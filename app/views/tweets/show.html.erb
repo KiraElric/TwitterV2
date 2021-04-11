@@ -1,9 +1,20 @@
-<p id="notice"><%= notice %></p>
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 mx-auto">
+        <h1 class="text-center font-weight-bolder">Tweet</h1>
+        <div>
+          <p>
+            <strong>Content:</strong>
+            <%= @tweet.content %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <%= link_to 'Back', tweets_path, class: "btn btn-danger" %>
+    </div>
+  </div>
+</section>
 
-<p>
-  <strong>Content:</strong>
-  <%= @tweet.content %>
-</p>
 
-<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
-<%= link_to 'Back', tweets_path %>

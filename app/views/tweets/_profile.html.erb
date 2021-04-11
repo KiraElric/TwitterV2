@@ -1,0 +1,36 @@
+<div class="col-12 border border-secondary rounded">
+  <div>
+    <article class="media p-2">
+      <div class="align-self-start">
+        <figure class="figure">
+          <%= image_tag current_user.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
+        </figure>
+      </div>
+      <div class="media-body">
+        <div class=" container mt-0">
+          <strong class="mt-0"><%= current_user.user_name %></strong>
+          <br>
+          <small><%= current_user.email %></small>
+        </div>
+      </div>
+    </article>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <p class="h6 font-weight-bolder">Tweets</p>
+        <p class="h6"><%= current_user.tweets.count %></p>
+      </div>
+      <div class="col-4">
+        <p class="h6 font-weight-bolder">Following</p>
+        <p class="h6">123</p>
+      </div>
+      <div class="col-4">
+        <p class="h6 font-weight-bolder">Followers</p>
+        <p class="h6">465K</p>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,11 @@
 <section class="section">
   <div class="container">
     <div class="row">
+      <% if user_signed_in? %>
+        <div class="col-4">
+          <%= render 'profile' %>
+        </div>
+      <% end %>
       <div class="col-8 mx-auto">
         <%= render 'feed' %>
       </div>
