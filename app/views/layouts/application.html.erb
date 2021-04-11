@@ -19,19 +19,17 @@
   <body>
     <%= render "shared/navbar" %>
 
-    <div class="container mt-2">
-      <% if flash[:notice]%>
-        <div class="notification text-white bg-info">
-          <p class="notice"><%= notice %></p>
-        </div>
-      <% end %>
+    <% if flash[:notice]%>
+      <div class="notification py-3 text-white bg-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
 
-      <% if flash[:notice]%>
-        <div class="notification text-white bg-danger">
-          <p class="alert"><%= alert %></p>
-        </div>
-      <% end %>
-    </div>
+    <% if flash[:alert]%>
+      <div class="notification py-3 text-white bg-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
 
     <div class="mt-4">
       <%= yield %>
