@@ -59,6 +59,19 @@ class TweetsController < ApplicationController
     end
   end
 
+  def like
+    @tweet = Tweet.find(params[:id])
+    if !current_user.liked?(params[:id])
+      @like = @tweet.likes.create(user_id: current_user.id)
+    else
+      @unlike = @tweet.likes.find_by(user_id:  current_user.id).destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to root_path}
+      format.json { render json: { count: @tweet.total_likes, like: current_user.liked?(params[:id]) } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

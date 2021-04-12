@@ -31,9 +31,20 @@
         <small><%= link_to tweet.created_at, tweet, class: "text-decoration-none text-reset" %></small>
           <% if user_signed_in? && (tweet.user_id == current_user.id) %>
             <div class="icon-link text-right inline-block">
-              <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure you want to delete this tweet?'} do %>
-                <span class="icon"><i class="fas fa-trash-alt"></i></span>
-              <% end %>
+              <ul class="list-group list-group-horizontal list-unstyled list-inline">
+                <li class="list-group-item list-inline-item">
+                  <span class="icon"><i class="<%= current_user.liked?(tweet.id) ? 'fas' : 'far' %> fa-heart "></i></span>
+                  <div class="inline-block"><%= tweet.total_favs %></div>
+                </li>
+                <li class="list-group-item list-inline-item">
+                  <span class="icon"></span>
+                </li>
+                <li class="list-group-item list-inline-item">
+                  <%= link_to tweet, method: :delete, data: { confirm: 'Are you sure you want to delete this tweet?'} do %>
+                    <span class="icon"><i class="fas fa-trash-alt"></i></span>
+                  <% end %>
+                </li>
+              </ul>
             </div>
           <%end%>
       </div>
