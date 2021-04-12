@@ -4,10 +4,22 @@
       <div class="col-10 mx-auto">
         <h1 class="text-center font-weight-bolder">Tweet</h1>
         <div>
-          <p>
-            <strong>Content:</strong>
-            <%= @tweet.content %>
-          </p>
+          <ul class="list-group list-unstyled">
+            <li class="h4 font-weight-bold list-group-item">Content:</li>
+            <li class="list-group-item"><%= @tweet.content %></li>
+          </ul>
+          <ul class="list-group list-unstyled mt-3">
+            <li class="h4 font-weight-bold list-group-item">Likes from:
+            </li>
+          <% @users.each do |user|%>
+              <li class="list-group-item">
+                <%= image_tag user.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
+                <span>
+                  <%= user.user_name%>
+                </span>
+              </li>
+          <%end %>
+          </ul>
         </div>
       </div>
     </div>

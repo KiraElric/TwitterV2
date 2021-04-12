@@ -15,14 +15,40 @@ class Tweet < ApplicationRecord
   def image
     self.user.user_image
   end
+
+  def name_parent
+    Tweet.find(self.parent_tweet).user.user_name
+  end
+
+  def mail_parent
+    Tweet.find(self.parent_tweet).user.email
+  end
+
+  def image_parent
+    Tweet.find(self.parent_tweet).user.user_image
+  end
   
   def total_likes
     likes_counter = 0
     if likes.empty?
       return likes_counter
     else
-      likes_counter = likes.count
+      likes_counter = self.likes.count
     end
-    return fav_counter
+    return likes_counter
+  end
+
+  def total_retweets
+    Tweet.where("parent_tweet=?", self.id).count
+  end
+
+  def time_posted
+    minutes = ((Time.now - self.created_at).to_i)/60
+    if minutes> 60
+      time = "#{minutes/60} hrs"
+    else
+      time = "#{minutes} min"
+    end
+    return time
   end
 end

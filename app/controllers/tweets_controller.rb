@@ -12,6 +12,12 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1 or /tweets/1.json
   def show
+    @users = []
+    @tweet = Tweet.find(params[:id])
+    @tweet.likes.each do |like|
+      @users.push(User.find(like.user_id))
+    end
+    return @tweet, @users
   end
 
   # GET /tweets/new

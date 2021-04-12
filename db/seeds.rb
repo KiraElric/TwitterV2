@@ -14,32 +14,29 @@ imgs = ["https://cdn.pixabay.com/photo/2015/02/25/17/56/cat-649164__340.jpg",
         "https://cdn.pixabay.com/photo/2016/11/22/19/02/cat-1850056__340.jpg"]
 
 5.times do |i|
-  User.create(name: names[i],
-              photo: imgs[i],
+  User.create(user_name: names[i],
+              user_image: imgs[i],
               email:  "#{names[i].downcase}@example.com",
               password: "123456"
   )
 end
 
-50.times do
-  Tweet.create(content: Faker::Quote.yoda,
-              user_id:  Random.rand(1..5),
-              parent_tweet: (Tweet.all.count>0 && rand>0.5)? Tweet.all.order('random()').first.id : nil
-              if :parent_tweet != nil 
-                content_retweet: Tweet.find(:parent_tweet).content
-              else
-                content_retweet: nil
-              end
+100.times do
+  content = Faker::Quote.yoda
+  user_id = Random.rand(1..5)
+  parent_tweet = (Tweet.all.count>0 && rand>0.5)? Tweet.all.order('random()').first.id : nil
+  content_retweet = (parent_tweet != nil) ? Tweet.find(parent_tweet).content : nil
+  Tweet.create(content: content,
+              user_id: user_id,
+              parent_tweet: parent_tweet,
+              content_retweet: content_retweet
   )
 end
 
 5.times do |i|
-  lista_num = (1..50).sort
-  5.times do 
-    select = (lista_num.shuffle)[0]
-    Like.create(user_id: i+1,
-              tweet_id: select
-    )
-    lista_num.delete(select)
+  100.times do |j|
+    if ((j+1) % (i+1) == 0)
+      Like.create(user_id: i+1, tweet_id: j+1)
+    end
   end
 end
