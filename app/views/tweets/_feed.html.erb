@@ -48,13 +48,25 @@
             <div class="icon-link text-right inline-block">
               <ul class="list-group list-group-horizontal list-unstyled list-inline">
                 <li class="list-group-item list-inline-item">
-                  <span class="icon"><i class="<%= current_user.liked?(tweet.id) ? 'fas' : 'far' %> fa-heart "></i></span>
+                  <span class="icon">
+                    <% if current_user.liked?(tweet.id) %>
+                      <%= link_to tweet_like_path(tweet, current_user.likes.find_by(tweet_id: tweet.id).id), method: :delete, class: "text-decoration-none text-reset" do %>
+                        <i class="fas fa-heart"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to tweet_likes_path(tweet), method: :post, class: "text-decoration-none text-reset" do%>
+                        <i class="far fa-heart"></i>
+                      <% end %>
+                    <% end %>
+                  </span>
                 </li>
                 <li class="list-group-item list-inline-item">
                   <span class="icon"><%= tweet.total_likes %></span>
                 </li>
                 <li class="list-group-item list-inline-item">
-                  <span class="icon"><i class="fas fa-retweet"></i></span>
+                  <%= link_to "/retweet/#{tweet.id}", method: :post, class: "text-decoration-none text-reset" do%>
+                    <span class="icon"><i class="fas fa-retweet"></i></span>
+                  <% end %>
                 </li>
                 <li class="list-group-item list-inline-item">
                   <span class="icon"><%= tweet.total_retweets %></span>

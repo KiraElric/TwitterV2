@@ -65,16 +65,18 @@ class TweetsController < ApplicationController
     end
   end
 
-  def like
+  def retweet
     @tweet = Tweet.find(params[:id])
-    if !current_user.liked?(params[:id])
-      @like = @tweet.likes.create(user_id: current_user.id)
-    else
-      @unlike = @tweet.likes.find_by(user_id:  current_user.id).destroy
-    end
+    @new_tweet = Tweet.create(content: @tweet.content, user_id: current_user.id, parent_tweet: @tweet.id, content_retweet: @tweet.content)
+    
     respond_to do |format|
-      format.html { redirect_to root_path}
-      format.json { render json: { count: @tweet.total_likes, like: current_user.liked?(params[:id]) } }
+      if @new_tweet.save
+        format.html { redirect_to root_path, notice: "reTweet was successfully created." }
+        format.json { render :show, status: :created, location: @tweet }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
     end
   end
 
