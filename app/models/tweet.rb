@@ -4,6 +4,8 @@ class Tweet < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
 
+  scope :tweets_for_me, -> (user_id) { where(user_id: User.find(user_id).friend_list) }
+
   def name
     self.user.user_name
   end

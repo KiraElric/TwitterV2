@@ -4,6 +4,8 @@
       <% if user_signed_in? %>
         <div class="col-4">
           <%= render 'profile' %>
+          <br>
+          <%= render 'whoToFollow' %>
         </div>
       <% end %>
       <div class="col-8 mx-auto">

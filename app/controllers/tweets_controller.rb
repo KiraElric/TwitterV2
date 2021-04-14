@@ -3,9 +3,11 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.order("created_at DESC").page(params[:page])
     if user_signed_in?
       @tweet = current_user.tweets.build
+      @tweets = Tweet.tweets_for_me(current_user.id).order("created_at DESC").page(params[:page])
+    else
+      @tweets = Tweet.all.order("created_at DESC").page(params[:page])
     end
     return @tweets, @tweet
   end

@@ -16,7 +16,7 @@
     </article>
   </div>
   <hr>
-  <div class="container">
+  <div class="container p-2">
     <div class="row">
       <div class="col-4">
         <p class="h6 font-weight-bolder">Tweets</p>
@@ -24,11 +24,30 @@
       </div>
       <div class="col-4">
         <p class="h6 font-weight-bolder">Following</p>
-        <p class="h6">123</p>
+        <p class="h6"><%= current_user.total_following %></p>
       </div>
       <div class="col-4">
         <p class="h6 font-weight-bolder">Followers</p>
-        <p class="h6">465K</p>
+        <p class="h6"><%= current_user.total_followed %></p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container p-2">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-group list-unstyled mt-3">
+          <li class="h4 font-weight-bold list-group-item">Friends:</li>
+          <% current_user.friends.each do |friend| %>
+            <li class="list-group-item">
+              <% friend_data = User.find(friend.friend_id) %>
+              <%= image_tag friend_data.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
+              <span>
+                <%= friend_data.user_name%>
+              </span>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>

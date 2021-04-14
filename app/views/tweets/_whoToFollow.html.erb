@@ -1,0 +1,16 @@
+<div class="col-12 border border-secondary rounded">
+  <ul class="list-group p-2">
+    <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-info">
+      Who To Follow
+    </li>
+    <% current_user.suggest_friends.each do |user|%>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= image_tag user.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
+        <%= user.user_name %>
+        <span class="badge badge-primary badge-pill">
+          <%= link_to 'Follow', root_path, class: "text-decoration-none text-reset"%>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+</div>
