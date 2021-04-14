@@ -1,6 +1,16 @@
 <section class="section">
   <div class="container">
     <div class="row">
+      <div class="col-4 mx-auto p-2">
+        <%= search_form_for @q do |f| %>
+          <div class="form-group">
+            <%= f.label :content_cont, 'Tweet Content', class: 'h4 font-weight-bold'  %>
+            <%= f.search_field :content_cont, class: 'form-control', placeholder: 'Search Content' %>
+          </div>
+          <%= f.submit 'Search', class: 'btn btn-info' %>
+        <% end %>
+      </div>
+    <div class="row">
       <% if user_signed_in? %>
         <div class="col-4">
           <%= render 'profile' %>

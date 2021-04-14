@@ -43,6 +43,9 @@ gem 'kaminari'
 #Devise
 gem 'devise'
 
+#Ransack
+gem 'ransack'
+
 #Faker
 gem 'faker'
 
