@@ -42,8 +42,9 @@
             <li class="list-group-item">
               <% friend_data = User.find(friend.friend_id) %>
               <%= image_tag friend_data.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
-              <span>
-                <%= friend_data.user_name%>
+              <%= friend_data.user_name%>
+              <span class="badge badge-danger badge-pill">
+                <%= link_to 'Unfollow', "/follow/#{friend_data.id}", method: :delete, class: "text-decoration-none text-reset"%>
               </span>
             </li>
           <% end %>

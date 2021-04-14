@@ -8,7 +8,7 @@
         <%= image_tag user.user_image, class: "mr-3 figure-img img-fluid rounded-circle" %>
         <%= user.user_name %>
         <span class="badge badge-primary badge-pill">
-          <%= link_to 'Follow', root_path, class: "text-decoration-none text-reset"%>
+          <%= link_to 'Follow', "/follow/#{user.id}", method: :post, class: "text-decoration-none text-reset"%>
         </span>
       </li>
     <% end %>

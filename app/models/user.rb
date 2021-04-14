@@ -35,4 +35,8 @@ class User < ApplicationRecord
     users.push(self.id)
     return users
   end
+
+  def follow?(user)
+    return (friends.where('friend_id=?', user).count == 1)
+  end
 end
