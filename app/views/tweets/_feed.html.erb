@@ -51,11 +51,11 @@
                   <span class="icon">
                     <% if current_user.liked?(tweet.id) %>
                       <%= link_to tweet_like_path(tweet, current_user.likes.find_by(tweet_id: tweet.id).id), method: :delete, class: "text-decoration-none text-reset" do %>
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart heart-icon"></i>
                       <% end %>
                     <% else %>
                       <%= link_to tweet_likes_path(tweet), method: :post, class: "text-decoration-none text-reset" do%>
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart heart-icon"></i>
                       <% end %>
                     <% end %>
                   </span>
